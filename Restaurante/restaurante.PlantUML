@@ -1,0 +1,64 @@
+@startuml Restaurante
+
+class Restaurant{
+    String name
+    String address
+}
+
+class Table{
+    Integer tableNumber
+    Integer capacity
+    Boolean isOccupied
+
+}
+
+class MenuItem {
+    String name
+    Double price
+}
+
+
+class orderItem {
+    Interger quantity
+}
+
+class order {
+    Integer orderNumber
+    orderStatus status
+}
+
+enum orderStatus {
+    PENDING
+    IN_PROGRSS
+    DELIVERED
+}
+
+class Menu {
+    String name
+}
+
+class Employee {
+    String name
+
+    Employee(String name)
+
+    String getName()
+    }
+
+
+'relaciones
+'o-- es agregacion : 
+'*-- es composicion : 
+'-- asociacion : relacion entre 2 clases porque se usan entre si pero no se necesitan mutuamente
+'--> dependencia
+
+Restaurant "1" o-- "1..*" Table
+Restaurant "1" o-- "2..50" Employee
+Restaruant "1" o-- "1..*" Menu
+Table "1" -- "0..*" oder 
+Menu "1" *-- "1..*" MenuItem
+MenuItem "1" -- "0..*" orderItem
+oder "1" *-- "1..*" orderItem
+order --> orderStatus : status
+
+@enduml
